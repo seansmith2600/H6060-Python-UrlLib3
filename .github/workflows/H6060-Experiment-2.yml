@@ -1,9 +1,6 @@
 name: H6060 Experiment 2 - UrlLib3
 
 on:
-  push:
-    branches:
-      - Add_Experiment_Workflow
   workflow_dispatch:
     inputs:
       sast-codeql-enabled:
