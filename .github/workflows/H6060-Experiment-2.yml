@@ -158,3 +158,52 @@ jobs:
         uses: seansmith2600/H6060-Experiment-Resources/.github/actions/python/python-cyclonedx-sbom@main
         with:
           artifact-name: cyclonedx-sbom-python-${{ matrix.os }}
+
+  security_tool_analysis:
+    name: Perform Security Tool Analysis
+    uses: seansmith2600/H6060-Experiment-Resources/.github/workflows/experiment-2-python.yml@main
+    needs: [ create-dependency-tree, create-cyclonedx-sbom ]
+    secrets:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      github-api-token: ${{ secrets.GIT_API_TOKEN }}
+      nvd-api-key: ${{ secrets.NVD_API_KEY }}
+      opencve-username: ${{ secrets.OPENCVE_USERNAME }}
+      opencve-password: ${{ secrets.OPENCVE_PASSWORD }}
+      honeycomb-api-key: ${{ secrets.HONEYCOMB_API_KEY }}
+      eclipse-steady-host-url: ${{ secrets.ECLIPSE_STEADY_HOST_URL }}
+      deepsource-api-key: ${{ secrets.DEEPSOURCE_API_KEY }}
+      semgrep-app-token: ${{ secrets.SEMGREP_APP_TOKEN }}
+      snyk-token: ${{ secrets.SNYK_TOKEN }}
+      sonarqube-username: ${{ secrets.SONARQUBE_USERNAME }}
+      sonarqube-password: ${{ secrets.SONARQUBE_PASSWORD }}
+      sonarqube-token-ubuntu: ${{ secrets.SONARQUBE_TOKEN_UBUNTU }}
+      sonarqube-token-macos: ${{ secrets.SONARQUBE_TOKEN_MACOS }}
+      sonarqube-token-windows: ${{ secrets.SONARQUBE_TOKEN_WINDOWS }}
+      sonarqube-user-token-ubuntu: ${{ secrets.SONARQUBE_USER_TOKEN_UBUNTU }}
+      sonarqube-user-token-macos: ${{ secrets.SONARQUBE_USER_TOKEN_MACOS }}
+      sonarqube-user-token-windows: ${{ secrets.SONARQUBE_USER_TOKEN_WINDOWS }}
+      sonarqube-url-ubuntu: ${{ secrets.SONARQUBE_URL_UBUNTU }}
+      sonarqube-url-macos: ${{ secrets.SONARQUBE_URL_MACOS }}
+      sonarqube-url-windows: ${{ secrets.SONARQUBE_URL_WINDOWS }}
+    with:
+      sast-codeql-enabled: ${{ inputs.sast-codeql-enabled }}
+      sast-horusec-enabled: ${{ inputs.sast-horusec-enabled }}
+      sast-semgrep-enabled: ${{ inputs.sast-semgrep-enabled }}
+      sast-snyk-code-enabled: ${{ inputs.sast-snyk-code-enabled }}
+      sast-sonarqube-enabled: ${{ inputs.sast-sonarqube-enabled }}
+      sca-eclipse-steady-enabled: ${{ inputs.sca-eclipse-steady-enabled }}
+      sca-grype-enabled: ${{ inputs.sca-grype-enabled }}
+      sca-owasp-dependency-check-enabled: ${{ inputs.sca-owasp-dependency-check-enabled }}
+      sca-snyk-enabled: ${{ inputs.sca-snyk-enabled }}
+      reporting-enabled: ${{ inputs.reporting-enabled }}
+      eclipse-steady-workspace-token: 0AACF0FFBE1EA3C6832D327169B98714
+      eclipse-steady-application-group-id: urllib3
+      eclipse-steady-application-artifact-id: urllib3
+      eclipse-steady-application-version: 1.26.5
+      eclipse-steady-project-source-directories: src
+      horusec-files-or-paths-to-ignore: "**/test/**"
+      semgrep-files-or-paths-to-ignore: "test"
+      sonarqube-sources: src
+      project-name: H6060-Python-UrlLib3
+      build-artifact: python-build
+      build-directory: dist
