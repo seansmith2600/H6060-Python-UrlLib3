@@ -1,4 +1,5 @@
 .*
+!.deepsource.toml
 !/.github/
 *.py[co]
 *.egg
