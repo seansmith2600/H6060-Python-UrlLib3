@@ -172,6 +172,8 @@ jobs:
       honeycomb-api-key: ${{ secrets.HONEYCOMB_API_KEY }}
       eclipse-steady-host-url: ${{ secrets.ECLIPSE_STEADY_HOST_URL }}
       deepsource-api-key: ${{ secrets.DEEPSOURCE_API_KEY }}
+      oss-index-username: ${{ secrets.OSS_INDEX_USERNAME }}
+      oss-index-password: ${{ secrets.OSS_INDEX_PASSWORD }}
       semgrep-app-token: ${{ secrets.SEMGREP_APP_TOKEN }}
       snyk-token: ${{ secrets.SNYK_TOKEN }}
       sonarqube-username: ${{ secrets.SONARQUBE_USERNAME }}
